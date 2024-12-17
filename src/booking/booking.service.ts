@@ -3,12 +3,13 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { BookingModel } from './booking.model';
 import { ROOM_ALREADY_BOOKED_ERROR } from 'src/constants/constants';
+import { CreateBookingDto } from './dto/booking.dto';
 
 @Injectable()
 export class BookingService {
     constructor(@InjectModel(BookingModel) private readonly bookingModel: ModelType<BookingModel>) { }
 
-    async create(bookingData: any) {
+    async create(bookingData: CreateBookingDto) {
         const existingBooking = await this.bookingModel.findOne({
             roomId: bookingData.roomId,
             bookingDate: bookingData.bookingDate,

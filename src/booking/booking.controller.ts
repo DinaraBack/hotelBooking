@@ -1,12 +1,13 @@
-import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { BookingService } from './booking.service';
+import { CreateBookingDto } from './dto/booking.dto';
 
 @Controller('booking')
 export class BookingController {
     constructor(private readonly bookingService: BookingService) { }
 
     @Post('create')
-    async create(@Body() bookingData: any) {
+    async create(@Body(new ValidationPipe()) bookingData: CreateBookingDto) {
         return this.bookingService.create(bookingData);
     }
 
