@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { RoomsModule } from './rooms/rooms.module';
-import { TimetableModule } from './timetable/timetable.module';
+import { RoomsModule } from './room/room.module';
+import { ConfigModule } from '@nestjs/config';
+import { BookingModule } from './booking/booking.module';
 
 
 @Module({
     imports: [
-        TimetableModule,
+        ConfigModule.forRoot(),
         RoomsModule,
+        BookingModule
     ]
 })
 export class AppModule { }
