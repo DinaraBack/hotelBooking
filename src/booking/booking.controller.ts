@@ -1,14 +1,20 @@
-import { Body, Controller, Post, Get, Param, Delete, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Delete, Patch } from '@nestjs/common';
 import { BookingService } from './booking.service';
-import { CreateBookingDto } from './dto/booking.dto';
+import { CreateBookingDto } from './dto/create-booking.dto';
+import { UpdateBookingDto } from './dto/update-booking.dto';
 
 @Controller('booking')
 export class BookingController {
     constructor(private readonly bookingService: BookingService) { }
 
     @Post('create')
-    async create(@Body(new ValidationPipe()) bookingData: CreateBookingDto) {
+    async create(@Body() bookingData: CreateBookingDto) {
         return this.bookingService.create(bookingData);
+    }
+
+    @Patch('update/:id')
+    async update(@Param('id') id: string, @Body() bookingData: UpdateBookingDto) {
+        return this.bookingService.updateById(id, bookingData);
     }
 
     @Post('cancel/:id')

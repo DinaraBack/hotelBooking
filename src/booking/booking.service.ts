@@ -3,7 +3,8 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { BookingModel } from './booking.model';
 import { ROOM_ALREADY_BOOKED_ERROR } from 'src/constants/constants';
-import { CreateBookingDto } from './dto/booking.dto';
+import { CreateBookingDto } from './dto/create-booking.dto';
+import { UpdateBookingDto } from './dto/update-booking.dto';
 
 @Injectable()
 export class BookingService {
@@ -20,6 +21,10 @@ export class BookingService {
         }
 
         return this.bookingModel.create(bookingData);
+    }
+
+    async updateById(id: string, bookingData: UpdateBookingDto) {
+        return this.bookingModel.findByIdAndUpdate(id, bookingData, { new: true }).exec();
     }
 
     async cancel(id: string) {

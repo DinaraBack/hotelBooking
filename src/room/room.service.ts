@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { RoomModel } from './room.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
-import { CreateRoomDto } from './dto/room.dto';
+import { CreateRoomDto } from './dto/create-room.dto';
+import { UpdateRoomDto } from './dto/update-room.dto';
 
 @Injectable()
 export class RoomService {
@@ -16,7 +17,7 @@ export class RoomService {
         return this.roomModel.findById(id).exec();
     }
 
-    async updateById(id: string, roomData: CreateRoomDto) {
+    async updateById(id: string, roomData: UpdateRoomDto) {
         return this.roomModel.findByIdAndUpdate(id, roomData, { new: true }).exec();
     }
 
