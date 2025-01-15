@@ -1,5 +1,10 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 
+enum BookingStatus {
+    Active = 'active',
+    Cancelled = 'cancelled',
+}
+
 export class UpdateBookingDto {
     @IsOptional()
     @IsString()
@@ -10,8 +15,8 @@ export class UpdateBookingDto {
     bookingDate?: string;
 
     @IsOptional()
-    @IsEnum(['active', 'cancelled'])
-    status?: 'active' | 'cancelled';
+    @IsEnum(BookingStatus)
+    status?: BookingStatus;
 
     @IsOptional()
     @IsString()

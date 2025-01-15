@@ -15,5 +15,5 @@ export class UpdateRoomDto {
 
     @IsOptional()
     @IsString()
-    view?: string;  // Вид (необязательное поле)
+    view?: boolean;  // Вид (необязательное поле)
 }
