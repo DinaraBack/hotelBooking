@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoomController = void 0;
 const common_1 = require("@nestjs/common");
 const room_service_1 = require("./room.service");
+const create_room_dto_1 = require("./dto/create-room.dto");
+const update_room_dto_1 = require("./dto/update-room.dto");
 let RoomController = class RoomController {
     constructor(roomService) {
         this.roomService = roomService;
@@ -39,7 +41,7 @@ __decorate([
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_room_dto_1.CreateRoomDto]),
     __metadata("design:returntype", Promise)
 ], RoomController.prototype, "create", null);
 __decorate([
@@ -54,7 +56,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, update_room_dto_1.UpdateRoomDto]),
     __metadata("design:returntype", Promise)
 ], RoomController.prototype, "update", null);
 __decorate([

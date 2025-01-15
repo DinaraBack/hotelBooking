@@ -15,12 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingController = void 0;
 const common_1 = require("@nestjs/common");
 const booking_service_1 = require("./booking.service");
+const create_booking_dto_1 = require("./dto/create-booking.dto");
+const update_booking_dto_1 = require("./dto/update-booking.dto");
 let BookingController = class BookingController {
     constructor(bookingService) {
         this.bookingService = bookingService;
     }
     async create(bookingData) {
         return this.bookingService.create(bookingData);
+    }
+    async update(id, bookingData) {
+        return this.bookingService.updateById(id, bookingData);
     }
     async cancel(id) {
         return this.bookingService.cancel(id);
@@ -39,9 +44,17 @@ __decorate([
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_booking_dto_1.CreateBookingDto]),
     __metadata("design:returntype", Promise)
 ], BookingController.prototype, "create", null);
+__decorate([
+    (0, common_1.Patch)('update/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_booking_dto_1.UpdateBookingDto]),
+    __metadata("design:returntype", Promise)
+], BookingController.prototype, "update", null);
 __decorate([
     (0, common_1.Post)('cancel/:id'),
     __param(0, (0, common_1.Param)('id')),

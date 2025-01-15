@@ -1,5 +1,10 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
+enum BookingStatus {
+    Active = 'active',
+    Cancelled = 'cancelled',
+}
+
 export class CreateBookingDto {
     @IsNotEmpty()
     @IsString()
@@ -9,8 +14,8 @@ export class CreateBookingDto {
     @IsString()
     bookingDate: string;
 
-    @IsEnum(['active', 'cancelled'])
-    status: 'active' | 'cancelled';
+    @IsEnum(BookingStatus)
+    status: BookingStatus;
 
     @IsOptional()
     @IsString()

@@ -31,6 +31,9 @@ let BookingService = class BookingService {
         }
         return this.bookingModel.create(bookingData);
     }
+    async updateById(id, bookingData) {
+        return this.bookingModel.findByIdAndUpdate(id, bookingData, { new: true }).exec();
+    }
     async cancel(id) {
         return this.bookingModel.findByIdAndUpdate(id, { status: 'cancelled' }, { new: true }).exec();
     }
